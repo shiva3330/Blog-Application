@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add New Post</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#4facfe,#00f2fe);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+        }
+
+        .container{
+            width:100%;
+            max-width:700px;
+            background:#fff;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 20px 40px rgba(0,0,0,.2);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#333;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+            color:#555;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:14px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            font-size:16px;
+            outline:none;
+            transition:.3s;
+        }
+
+        input:focus,
+        textarea:focus{
+            border-color:#2196f3;
+            box-shadow:0 0 8px rgba(33,150,243,.3);
+        }
+
+        textarea{
+            resize:vertical;
+            min-height:180px;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:space-between;
+            margin-top:25px;
+        }
+
+        button{
+            padding:14px 30px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            color:white;
+            font-size:16px;
+            transition:.3s;
+        }
+
+        .save{
+            background:#2196f3;
+        }
+
+        .save:hover{
+            background:#1976d2;
+        }
+
+        .cancel{
+            background:#f44336;
+            text-decoration:none;
+            padding:14px 30px;
+            border-radius:8px;
+            color:white;
+        }
+
+        .cancel:hover{
+            background:#d32f2f;
+        }
+
+        @media(max-width:600px){
+
+            .container{
+                margin:20px;
+                padding:25px;
+            }
+
+            .buttons{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            button,
+            .cancel{
+                width:100%;
+                text-align:center;
+            }
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Create New Blog Post</h1>
+
+    <form th:action="@{/save}" th:object="${post}" method="post">
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" th:field="*{title}" placeholder="Enter blog title" required>
+        </div>
+
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" th:field="*{author}" placeholder="Enter author name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Content</label>
+            <textarea th:field="*{content}" placeholder="Write your blog here..." required></textarea>
+        </div>
+
+        <div class="buttons">
+            <button class="save" type="submit">Publish Post</button>
+            <a href="/" class="cancel">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Blog Post</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+        }
+
+        .container{
+            width:100%;
+            max-width:700px;
+            background:#fff;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 15px 40px rgba(0,0,0,.2);
+        }
+
+        h1{
+            text-align:center;
+            color:#333;
+            margin-bottom:30px;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:12px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+        input:focus,
+        textarea:focus{
+            border-color:#667eea;
+            outline:none;
+        }
+
+        textarea{
+            resize:vertical;
+            min-height:180px;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:space-between;
+            margin-top:25px;
+        }
+
+        button{
+            background:#667eea;
+            color:white;
+            border:none;
+            padding:12px 30px;
+            border-radius:8px;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        button:hover{
+            background:#5563d8;
+        }
+
+        .back{
+            background:#f44336;
+            color:white;
+            text-decoration:none;
+            padding:12px 30px;
+            border-radius:8px;
+        }
+
+        .back:hover{
+            background:#d32f2f;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Edit Blog Post</h1>
+
+    <form th:action="@{/update}" th:object="${post}" method="post">
+
+        <!-- Hidden ID -->
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" th:field="*{title}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" th:field="*{author}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Content</label>
+            <textarea th:field="*{content}" required></textarea>
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Update Post</button>
+            <a href="/" class="back">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
